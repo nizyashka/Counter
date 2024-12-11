@@ -31,17 +31,17 @@ class ViewController: UIViewController {
         historyTextView.layer.cornerRadius = 10
     }
     
-    func getDate(_ currentDate: Date) -> String {
+    private func getDate(_ currentDate: Date) -> String {
         return dateFormatter.string(from: currentDate)
     }
 
-    @IBAction func plusOne() {
+    @IBAction private func plusOne() {
         counter += 1
         counterLabel.text = "\(counter)"
         historyTextView.text += "\n[\(getDate(Date.now))]: Значение изменено на +1"
     }
     
-    @IBAction func minusOne() {
+    @IBAction private func minusOne() {
         if counter > 0 {
             counter -= 1
             counterLabel.text = "\(counter)"
@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func setToZero() {
+    @IBAction private func setToZero() {
         counter = 0
         counterLabel.text = "\(counter)"
         historyTextView.text += "\n[\(getDate(Date.now))]: Значение сброшено"
