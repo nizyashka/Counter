@@ -25,10 +25,23 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        counter = UserDefaults.standard.value(forKey: "counter") as? Int ?? 0
         counterLabel.text = "\(counter)"
+        //        } else {
+        //            counterLabel.text = "\(counter)"
+        //        }
         historyTextView.layer.borderWidth = 2
         historyTextView.layer.borderColor = UIColor.systemBlue.cgColor
         historyTextView.layer.cornerRadius = 10
+        if let history = UserDefaults.standard.value(forKey: "history") as? String {
+            historyTextView.text = history
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        UserDefaults.standard.set(counter, forKey: "counter")
+        UserDefaults.standard.set(historyTextView.text, forKey: "history")
     }
     
     private func getDate(_ currentDate: Date) -> String {
